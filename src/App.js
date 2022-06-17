@@ -2,6 +2,25 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      DataisLoaded: false
+    };
+  }
+  componentDidMount() {
+    fetch(
+      "http://ddragon.leagueoflegends.com/cdn/12.11.1/data/en_US/champion.json")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({
+          items: json,
+          DataisLoaded: true
+        })
+      })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
